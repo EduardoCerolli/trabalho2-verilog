@@ -2,15 +2,13 @@ CC = gcc
 CFLAGS = -Wall
 
 ICARUS = iverilog
-ARQS_V = substituiBytes.v 
-TBS = substituiBytes_TB.v
+ARQS_V = substituiBytes.v rotacionaLinhas.v
+TBS = substituiBytes_TB.v rotacionaLinhas_TB.v
 
 all:
 	$(ICARUS) -o aes $(ARQS_V)
+	$(CC) $(CFLAGS) -o aes_c aes.c 
+	$(CC) $(CFLAGS) -o decifra_c decifra.c
 
 tbs:
 	$(ICARUS) -o aes $(ARQS_V) $(TBS)
-
-cod_c:
-	$(CC) $(CFLAGS) -o aes_c aes.c 
-	$(CC) $(CFLAGS) -o decifra_c decifra.c

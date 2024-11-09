@@ -6,10 +6,10 @@ module substituiBytes_TB ();
     substituiBytes DUT (.bloco(bloco), .saida(saida));
 
     initial begin
-        bloco = 256'h50414c41565241544553544543494652;
+        bloco = 128'h50414c41565241544553544543494652;
         #10
 
-        if (saida == 256'h53832983b10083206eed206e1a3b5a00)
+        if (saida == 128'h53832983b10083206eed206e1a3b5a00)
             $display("substituiBytes OK");
         else
             $display("substituiBytes ERRO");
