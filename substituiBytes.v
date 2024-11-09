@@ -105,7 +105,6 @@ module substituiBytes (
 
     end
 
-
     assign saida[7:0]    = caixaS[bloco[7:0]];
     assign saida[15:8]   = caixaS[bloco[15:8]];
     assign saida[23:16]  = caixaS[bloco[23:16]];
