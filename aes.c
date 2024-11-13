@@ -302,8 +302,8 @@ int main (int argc, char *argv[]) {
 
             for (int i = 0; i < 4; i++)
             {
-                for (int j = 0; j < 40; j++)
-                    printf("%c ", bloco[(i * 40) + j]);        
+                for (int j = 0; j < 4; j++)
+                    printf("%02x ", bloco[(i * 40) + j]);        
                 printf("\n");
             }
         }

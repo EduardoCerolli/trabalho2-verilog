@@ -1,31 +1,39 @@
 module expandeChave (
     input wire[127:0] chave,
-    output reg[1279:0] chaveExpandida
+    output wire[1279:0] chaveExpandida
 );
-    wire [31:0] aux;
-    wire[3:0] rodada = 4'd0;
+    wire [31:0] palavra, aux;
+    wire [3:0] rodada = 4'd0;
 
-    funcaoG fg(.palavra({chave[127:120], chave[95:88], chave[63:56], chave[31:24]}) .rodada(rodada), .saida(aux));
-    initial begin
-        // chaveExpandida[  0] = aux[0] ^ chave[0];
-        // chaveExpandida[ 40] = aux[1] ^ chave[4];
-        // chaveExpandida[ 80] = aux[2] ^ chave[8];
-        // chaveExpandida[120] = aux[3] ^ chave[12];
+    assign palavra[31:24] = chave[127:120];
+    assign palavra[23:16] = chave[95:88];
+    assign palavra[15:8] = chave[63:56];
+    assign palavra[7:0] = chave[31:24];
 
-        // chaveExpandida[  1] = chaveExpandida[  0] ^ chave[1];
-        // chaveExpandida[ 41] = chaveExpandida[ 40] ^ chave[5];
-        // chaveExpandida[ 81] = chaveExpandida[ 80] ^ chave[9];
-        // chaveExpandida[121] = chaveExpandida[120] ^ chave[13];
+    funcaoG fg(.palavra(palavra), .rodada(rodada), .saida(aux));
 
-        // chaveExpandida[  2] = chaveExpandida[  1] ^ chave[2];
-        // chaveExpandida[ 42] = chaveExpandida[ 41] ^ chave[6];
-        // chaveExpandida[ 82] = chaveExpandida[ 81] ^ chave[10];
-        // chaveExpandida[122] = chaveExpandida[121] ^ chave[14];
+    assign chaveExpandida[7:0] = aux[7:0] ^ chave[7:0];
+    assign chaveExpandida[327:320] = aux[15:8] ^ chave[39:32];
+    assign chaveExpandida[647:640] = aux[23:16] ^ chave[71:64];
+    assign chaveExpandida[967:960] = aux[31:24] ^ chave[103:96];
 
-        // chaveExpandida[  3] = chaveExpandida[  2] ^ chave[3];
-        // chaveExpandida[ 43] = chaveExpandida[ 42] ^ chave[7];
-        // chaveExpandida[ 83] = chaveExpandida[ 82] ^ chave[11];
-        // chaveExpandida[123] = chaveExpandida[122] ^ chave[15];
+    assign chaveExpandida[15:8] = chaveExpandida[7:0] ^ chave[15:8];
+    assign chaveExpandida[335:328] = chaveExpandida[327:320] ^ chave[47:40];
+    assign chaveExpandida[655:648] = chaveExpandida[647:640] ^ chave[79:72];
+    assign chaveExpandida[975:968] = chaveExpandida[967:960] ^ chave[111:104];
+
+    assign chaveExpandida[23:16] = chaveExpandida[15:8] ^ chave[23:16];
+    assign chaveExpandida[343:336] = chaveExpandida[335:328] ^ chave[55:48];
+    assign chaveExpandida[663:656] = chaveExpandida[655:648] ^ chave[87:80];
+    assign chaveExpandida[983:976] = chaveExpandida[975:968] ^ chave[119:112];
+
+    assign chaveExpandida[31:24] = chaveExpandida[23:16] ^ chave[31:24];
+    assign chaveExpandida[351:344] = chaveExpandida[343:336] ^ chave[63:56];
+    assign chaveExpandida[671:664] = chaveExpandida[663:656] ^ chave[95:88];
+    assign chaveExpandida[991:984] = chaveExpandida[983:976] ^ chave[127:120];
+
+    // initial begin
+  
 
         // for (int i = 4; i < 40; i+= 4)
         // {
@@ -51,6 +59,6 @@ module expandeChave (
         //     chaveExpandida[ 80 + i + 3] = chaveExpandida[ 80 + i + 3 - 1] ^ chaveExpandida[ 80 + i + 3 - 4];
         //     chaveExpandida[120 + i + 3] = chaveExpandida[120 + i + 3 - 1] ^ chaveExpandida[120 + i + 3 - 4];
         // }
-    end
+    // end
     
 endmodule
