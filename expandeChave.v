@@ -61,8 +61,6 @@ module expandeChave (
             palavra[7:0] = cs.caixaS[{chaveExpandida[indice + 7], chaveExpandida[indice + 6], chaveExpandida[indice + 5], chaveExpandida[indice + 4],
                               chaveExpandida[indice + 3], chaveExpandida[indice + 2], chaveExpandida[indice + 1], chaveExpandida[indice]}];
 
-            $display("%h %h %h %h", palavra[31:24], palavra[23:16], palavra[15:8], palavra[7:0]);
-
             // chaveExpandida[      i] = aux[0] ^ chaveExpandida[      i - 4];
             indice = (159 - i) * 8;
             indice2 = (159 - (i - 4)) * 8;
@@ -100,7 +98,7 @@ module expandeChave (
             chaveExpandida[indice] = palavra[8] ^ chaveExpandida[indice2];
 
             // chaveExpandida[120 + i] = aux[3] ^ chaveExpandida[120 + i - 4];
-            indice = (159 - (12 + i)) * 8;
+            indice = (159 - (120 + i)) * 8;
             indice2 = (159 - (120 + i - 4)) * 8;
             chaveExpandida[indice + 7] = palavra[7] ^ chaveExpandida[indice2 + 7];
             chaveExpandida[indice + 6] = palavra[6] ^ chaveExpandida[indice2 + 6];
@@ -115,7 +113,7 @@ module expandeChave (
             // chaveExpandida[      i + 1] = chaveExpandida[      i + 1 - 1] ^ chaveExpandida[      i + 1 - 4];
             indice = (159 - (i + 1)) * 8;
             indice2 = (159 - (i + 1 - 1)) * 8;
-            indice2 = (159 - (i + 1 - 4)) * 8;
+            indice3 = (159 - (i + 1 - 4)) * 8;
             chaveExpandida[indice + 7] = chaveExpandida[indice2 + 7] ^ chaveExpandida[indice3 + 7];
             chaveExpandida[indice + 6] = chaveExpandida[indice2 + 6] ^ chaveExpandida[indice3 + 6];
             chaveExpandida[indice + 5] = chaveExpandida[indice2 + 5] ^ chaveExpandida[indice3 + 5];
@@ -128,7 +126,7 @@ module expandeChave (
             // chaveExpandida[ 40 + i + 1] = chaveExpandida[ 40 + i + 1 - 1] ^ chaveExpandida[ 40 + i + 1 - 4];
             indice = (159 - (40 + i + 1)) * 8;
             indice2 = (159 - (40 + i + 1 - 1)) * 8;
-            indice2 = (159 - (40 + i + 1 - 4)) * 8;
+            indice3 = (159 - (40 + i + 1 - 4)) * 8;
             chaveExpandida[indice + 7] = chaveExpandida[indice2 + 7] ^ chaveExpandida[indice3 + 7];
             chaveExpandida[indice + 6] = chaveExpandida[indice2 + 6] ^ chaveExpandida[indice3 + 6];
             chaveExpandida[indice + 5] = chaveExpandida[indice2 + 5] ^ chaveExpandida[indice3 + 5];
@@ -141,7 +139,7 @@ module expandeChave (
             // chaveExpandida[ 80 + i + 1] = chaveExpandida[ 80 + i + 1 - 1] ^ chaveExpandida[ 80 + i + 1 - 4];
             indice = (159 - (80 + i + 1)) * 8;
             indice2 = (159 - (80 + i + 1 - 1)) * 8;
-            indice2 = (159 - (80 + i + 1 - 4)) * 8;
+            indice3 = (159 - (80 + i + 1 - 4)) * 8;
             chaveExpandida[indice + 7] = chaveExpandida[indice2 + 7] ^ chaveExpandida[indice3 + 7];
             chaveExpandida[indice + 6] = chaveExpandida[indice2 + 6] ^ chaveExpandida[indice3 + 6];
             chaveExpandida[indice + 5] = chaveExpandida[indice2 + 5] ^ chaveExpandida[indice3 + 5];
@@ -154,7 +152,7 @@ module expandeChave (
             // chaveExpandida[120 + i + 1] = chaveExpandida[120 + i + 1 - 1] ^ chaveExpandida[120 + i + 1 - 4];
             indice = (159 - (120 + i + 1)) * 8;
             indice2 = (159 - (120 + i + 1 - 1)) * 8;
-            indice2 = (159 - (120 + i + 1 - 4)) * 8;
+            indice3 = (159 - (120 + i + 1 - 4)) * 8;
             chaveExpandida[indice + 7] = chaveExpandida[indice2 + 7] ^ chaveExpandida[indice3 + 7];
             chaveExpandida[indice + 6] = chaveExpandida[indice2 + 6] ^ chaveExpandida[indice3 + 6];
             chaveExpandida[indice + 5] = chaveExpandida[indice2 + 5] ^ chaveExpandida[indice3 + 5];
@@ -167,7 +165,7 @@ module expandeChave (
             // chaveExpandida[      i + 2] = chaveExpandida[      i + 2 - 1] ^ chaveExpandida[      i + 2 - 4];
             indice = (159 - (i + 2)) * 8;
             indice2 = (159 - (i + 2 - 1)) * 8;
-            indice2 = (159 - (i + 2 - 4)) * 8;
+            indice3 = (159 - (i + 2 - 4)) * 8;
             chaveExpandida[indice + 7] = chaveExpandida[indice2 + 7] ^ chaveExpandida[indice3 + 7];
             chaveExpandida[indice + 6] = chaveExpandida[indice2 + 6] ^ chaveExpandida[indice3 + 6];
             chaveExpandida[indice + 5] = chaveExpandida[indice2 + 5] ^ chaveExpandida[indice3 + 5];
@@ -180,7 +178,7 @@ module expandeChave (
             // chaveExpandida[ 40 + i + 2] = chaveExpandida[ 40 + i + 2 - 1] ^ chaveExpandida[ 40 + i + 2 - 4];
             indice = (159 - (40 + i + 2)) * 8;
             indice2 = (159 - (40 + i + 2 - 1)) * 8;
-            indice2 = (159 - (40 + i + 2 - 4)) * 8;
+            indice3 = (159 - (40 + i + 2 - 4)) * 8;
             chaveExpandida[indice + 7] = chaveExpandida[indice2 + 7] ^ chaveExpandida[indice3 + 7];
             chaveExpandida[indice + 6] = chaveExpandida[indice2 + 6] ^ chaveExpandida[indice3 + 6];
             chaveExpandida[indice + 5] = chaveExpandida[indice2 + 5] ^ chaveExpandida[indice3 + 5];
@@ -193,7 +191,7 @@ module expandeChave (
             // chaveExpandida[ 80 + i + 2] = chaveExpandida[ 80 + i + 2 - 1] ^ chaveExpandida[ 80 + i + 2 - 4];
             indice = (159 - (80 + i + 2)) * 8;
             indice2 = (159 - (80 + i + 2 - 1)) * 8;
-            indice2 = (159 - (80 + i + 2 - 4)) * 8;
+            indice3 = (159 - (80 + i + 2 - 4)) * 8;
             chaveExpandida[indice + 7] = chaveExpandida[indice2 + 7] ^ chaveExpandida[indice3 + 7];
             chaveExpandida[indice + 6] = chaveExpandida[indice2 + 6] ^ chaveExpandida[indice3 + 6];
             chaveExpandida[indice + 5] = chaveExpandida[indice2 + 5] ^ chaveExpandida[indice3 + 5];
@@ -206,7 +204,7 @@ module expandeChave (
             // chaveExpandida[120 + i + 2] = chaveExpandida[120 + i + 2 - 1] ^ chaveExpandida[120 + i + 2 - 4];
             indice = (159 - (120 + i + 2)) * 8;
             indice2 = (159 - (120 + i + 2 - 1)) * 8;
-            indice2 = (159 - (120 + i + 2 - 4)) * 8;
+            indice3 = (159 - (120 + i + 2 - 4)) * 8;
             chaveExpandida[indice + 7] = chaveExpandida[indice2 + 7] ^ chaveExpandida[indice3 + 7];
             chaveExpandida[indice + 6] = chaveExpandida[indice2 + 6] ^ chaveExpandida[indice3 + 6];
             chaveExpandida[indice + 5] = chaveExpandida[indice2 + 5] ^ chaveExpandida[indice3 + 5];
@@ -219,7 +217,7 @@ module expandeChave (
             // chaveExpandida[      i + 3] = chaveExpandida[      i + 3 - 1] ^ chaveExpandida[      i + 3 - 4];
             indice = (159 - (i + 3)) * 8;
             indice2 = (159 - (i + 3 - 1)) * 8;
-            indice2 = (159 - (i + 3 - 4)) * 8;
+            indice3 = (159 - (i + 3 - 4)) * 8;
             chaveExpandida[indice + 7] = chaveExpandida[indice2 + 7] ^ chaveExpandida[indice3 + 7];
             chaveExpandida[indice + 6] = chaveExpandida[indice2 + 6] ^ chaveExpandida[indice3 + 6];
             chaveExpandida[indice + 5] = chaveExpandida[indice2 + 5] ^ chaveExpandida[indice3 + 5];
@@ -232,7 +230,7 @@ module expandeChave (
             // chaveExpandida[ 40 + i + 3] = chaveExpandida[ 40 + i + 3 - 1] ^ chaveExpandida[ 40 + i + 3 - 4];
             indice = (159 - (40 + i + 3)) * 8;
             indice2 = (159 - (40 + i + 3 - 1)) * 8;
-            indice2 = (159 - (40 + i + 3 - 4)) * 8;
+            indice3 = (159 - (40 + i + 3 - 4)) * 8;
             chaveExpandida[indice + 7] = chaveExpandida[indice2 + 7] ^ chaveExpandida[indice3 + 7];
             chaveExpandida[indice + 6] = chaveExpandida[indice2 + 6] ^ chaveExpandida[indice3 + 6];
             chaveExpandida[indice + 5] = chaveExpandida[indice2 + 5] ^ chaveExpandida[indice3 + 5];
@@ -245,7 +243,7 @@ module expandeChave (
             // chaveExpandida[ 80 + i + 3] = chaveExpandida[ 80 + i + 3 - 1] ^ chaveExpandida[ 80 + i + 3 - 4];
             indice = (159 - (80 + i + 3)) * 8;
             indice2 = (159 - (80 + i + 3 - 1)) * 8;
-            indice2 = (159 - (80 + i + 3 - 4)) * 8;
+            indice3 = (159 - (80 + i + 3 - 4)) * 8;
             chaveExpandida[indice + 7] = chaveExpandida[indice2 + 7] ^ chaveExpandida[indice3 + 7];
             chaveExpandida[indice + 6] = chaveExpandida[indice2 + 6] ^ chaveExpandida[indice3 + 6];
             chaveExpandida[indice + 5] = chaveExpandida[indice2 + 5] ^ chaveExpandida[indice3 + 5];
@@ -258,7 +256,7 @@ module expandeChave (
             // chaveExpandida[120 + i + 3] = chaveExpandida[120 + i + 3 - 1] ^ chaveExpandida[120 + i + 3 - 4];
             indice = (159 - (120 + i + 3)) * 8;
             indice2 = (159 - (120 + i + 3 - 1)) * 8;
-            indice2 = (159 - (120 + i + 3 - 4)) * 8;
+            indice3 = (159 - (120 + i + 3 - 4)) * 8;
             chaveExpandida[indice + 7] = chaveExpandida[indice2 + 7] ^ chaveExpandida[indice3 + 7];
             chaveExpandida[indice + 6] = chaveExpandida[indice2 + 6] ^ chaveExpandida[indice3 + 6];
             chaveExpandida[indice + 5] = chaveExpandida[indice2 + 5] ^ chaveExpandida[indice3 + 5];

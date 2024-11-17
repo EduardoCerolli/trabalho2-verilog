@@ -149,7 +149,6 @@ void expandeChave () {
     {
         rodada++;
         funcaoG(aux, chaveExpandida[i - 1], chaveExpandida[40 + i - 1], chaveExpandida[80 +  i - 1], chaveExpandida[120 + i - 1], rodada);
-        printf("%02x %02x %02x %02x\n", aux[0], aux[1], aux[2], aux[3]);
         chaveExpandida[      i] = aux[0] ^ chaveExpandida[      i - 4];
         chaveExpandida[ 40 + i] = aux[1] ^ chaveExpandida[ 40 + i - 4];
         chaveExpandida[ 80 + i] = aux[2] ^ chaveExpandida[ 80 + i - 4];
@@ -301,12 +300,12 @@ int main (int argc, char *argv[]) {
             //         fprintf(arqSaida, "%c", bloco[(j * 4) + i]);        
             // }
 
-            // for (int i = 0; i < 4; i++)
-            // {
-            //     for (int j = 0; j < 4; j++)
-            //         printf("%02x ", chaveExpandida[(j * 40) + i]);        
-            //     printf("\n");
-            // }
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 40; j++)
+                    printf("%02x ", chaveExpandida[(i * 40) + j]);        
+                printf("\n");
+            }
         }
     }
 
