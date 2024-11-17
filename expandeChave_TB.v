@@ -7,10 +7,7 @@ module expandeChave_TB ();
     expandeChave DUT(.chave(chave), .chaveExpandida(chaveExpandida));
 
     initial begin
-        chave = 128'h53454e4841424f41455353414845494e;
-        #10
-
-        $display("%h", chaveExpandida[7:0]);        
+        chave = 128'h53414548454253454e4f53494841414e;
     end
 
 endmodule
