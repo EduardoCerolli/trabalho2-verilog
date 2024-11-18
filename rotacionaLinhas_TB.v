@@ -2,7 +2,6 @@
 module rotacionaLinhas_TB ();
     reg [127:0] bloco;
     wire [127:0] saida;
-    reg erro = 0;
 
     rotacionaLinhas DUT (.bloco(bloco), .saida(saida));
 

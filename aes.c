@@ -71,7 +71,6 @@ void multiplicaColunas(unsigned char bloco[16]) {
     unsigned char matriz_aux[16];
      
     for (int i = 0; i < 4; i++) {
-
         matriz_aux[i]  = (bloco[i] << 1) ^ (bloco[i] >> 7 ) * 0x1B;
         matriz_aux[i] ^= ((bloco[4 + i] << 1) ^ (bloco[4 + i] >> 7 ) * 0x1B) ^ (bloco[4 + i]);
         matriz_aux[i] ^= bloco[8 + i];
@@ -176,22 +175,22 @@ void expandeChave () {
 
 void cifraBloco (unsigned char bloco [16]) {
 
-    for (int i = 0; i < 4; i++) {
-        bloco[(i * 4) + 0] = bloco[(i * 4) + 0] ^ chave[(i * 4) + 0];
-        bloco[(i * 4) + 1] = bloco[(i * 4) + 1] ^ chave[(i * 4) + 1];
-        bloco[(i * 4) + 2] = bloco[(i * 4) + 2] ^ chave[(i * 4) + 2];
-        bloco[(i * 4) + 3] = bloco[(i * 4) + 3] ^ chave[(i * 4) + 3];
-    }
+    // for (int i = 0; i < 4; i++) {
+    //     bloco[(i * 4) + 0] = bloco[(i * 4) + 0] ^ chave[(i * 4) + 0];
+    //     bloco[(i * 4) + 1] = bloco[(i * 4) + 1] ^ chave[(i * 4) + 1];
+    //     bloco[(i * 4) + 2] = bloco[(i * 4) + 2] ^ chave[(i * 4) + 2];
+    //     bloco[(i * 4) + 3] = bloco[(i * 4) + 3] ^ chave[(i * 4) + 3];
+    // }
 
-    for (int i = 0; i < 9; i++) {
+    // for (int i = 0; i < 9; i++) {
         substituiBytes(bloco);
         rotacionaLinhas(bloco);
         multiplicaColunas(bloco);
-        adicionaChave(bloco, i * 4);
-    }
-    substituiBytes(bloco);
-    rotacionaLinhas(bloco);
-    adicionaChave(bloco, 36);
+        // adicionaChave(bloco, i * 4);
+    // }
+    // substituiBytes(bloco);
+    // rotacionaLinhas(bloco);
+    // adicionaChave(bloco, 36);
     
     return;
 }
@@ -277,22 +276,7 @@ int main (int argc, char *argv[]) {
     unsigned char bloco [16];
     while (!feof (arq)) {
         if (leBloco(bloco, arq)) {
-            // for (int i = 0; i < 4; i++)
-            // {
-            //     for (int j = 0; j < 4; j++)
-            //         printf("%02x", bloco[(i * 4) + j]);        
-            // }
-            // printf("\n");
-
-            // cifraBloco(bloco);
-
-            // for (int i = 0; i < 4; i++)
-            // {
-            //     for (int j = 0; j < 4; j++)
-            //         printf("%02x", bloco[(i * 4) + j]);        
-            // }
-            // printf("\n");
-
+            cifraBloco(bloco);
             
             // for (int i = 0; i < 4; i++)
             // {
@@ -300,10 +284,11 @@ int main (int argc, char *argv[]) {
             //         fprintf(arqSaida, "%c", bloco[(j * 4) + i]);        
             // }
 
+
             for (int i = 0; i < 4; i++)
             {
-                for (int j = 0; j < 40; j++)
-                    printf("%02x ", chaveExpandida[(i * 40) + j]);        
+                for (int j = 0; j < 4; j++)
+                    printf("%02x ", bloco[(i * 4) + j]);        
                 printf("\n");
             }
         }
