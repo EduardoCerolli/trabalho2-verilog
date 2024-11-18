@@ -42,6 +42,7 @@ module expandeChave (
         chaveExpandida[615:608] = chaveExpandida[623:616] ^ chave[39:32];
         chaveExpandida[295:288] = chaveExpandida[303:296] ^ chave[7:0];
 
+        rodada = 4'd0;
         for (integer i = 4; i < 40; i = i + 4) begin
             rodada = rodada + 1;
              

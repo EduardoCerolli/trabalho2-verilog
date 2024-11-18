@@ -36,6 +36,17 @@ void adicionaChave (unsigned char bloco[16], int rodada) {
         bloco[(i * 4) + 3] = bloco[(i * 4) + 3] ^ chaveExpandida[(i * 40) + rodada + 3];
     }
 
+    if (rodada == 20) {
+        printf("\nchave\n");
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+                printf("%02x ", chaveExpandida[(i * 40) + j + rodada]);        
+            printf("\n");
+        }
+        printf("\n");
+    }
+
     return;
 }
 
@@ -182,12 +193,28 @@ void cifraBloco (unsigned char bloco [16]) {
     //     bloco[(i * 4) + 3] = bloco[(i * 4) + 3] ^ chave[(i * 4) + 3];
     // }
 
-    // for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < 9; i++) {
         substituiBytes(bloco);
         rotacionaLinhas(bloco);
         multiplicaColunas(bloco);
-        // adicionaChave(bloco, i * 4);
-    // }
+        if (i == 5) {
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                    printf("%02x", bloco[(i * 4) + j]);        
+            }
+            printf("\n");
+        }
+        adicionaChave(bloco, i * 4);
+        if (i == 5) {
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                    printf("%02x", bloco[(i * 4) + j]);        
+            }
+            printf("\n");
+        }
+    }
     // substituiBytes(bloco);
     // rotacionaLinhas(bloco);
     // adicionaChave(bloco, 36);
@@ -285,12 +312,12 @@ int main (int argc, char *argv[]) {
             // }
 
 
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                    printf("%02x ", bloco[(i * 4) + j]);        
-                printf("\n");
-            }
+            // for (int i = 0; i < 4; i++)
+            // {
+            //     for (int j = 0; j < 4; j++)
+            //         printf("%02x", bloco[(i * 4) + j]);        
+            // }
+            // printf("\n");
         }
     }
 
