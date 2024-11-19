@@ -197,23 +197,7 @@ void cifraBloco (unsigned char bloco [16]) {
         substituiBytes(bloco);
         rotacionaLinhas(bloco);
         multiplicaColunas(bloco);
-        if (i == 5) {
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                    printf("%02x", bloco[(i * 4) + j]);        
-            }
-            printf("\n");
-        }
         adicionaChave(bloco, i * 4);
-        if (i == 5) {
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                    printf("%02x", bloco[(i * 4) + j]);        
-            }
-            printf("\n");
-        }
     }
     // substituiBytes(bloco);
     // rotacionaLinhas(bloco);
@@ -312,12 +296,12 @@ int main (int argc, char *argv[]) {
             // }
 
 
-            // for (int i = 0; i < 4; i++)
-            // {
-            //     for (int j = 0; j < 4; j++)
-            //         printf("%02x", bloco[(i * 4) + j]);        
-            // }
-            // printf("\n");
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                    printf("%02x", bloco[(i * 4) + j]);        
+            }
+            printf("\n");
         }
     }
 

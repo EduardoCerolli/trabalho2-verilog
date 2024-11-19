@@ -10,15 +10,14 @@ module cifraBloco_TB ();
 
     initial begin
         chave = 128'h53414548454253454e4f53494841414e;
-        bloco = 128'h790c3faf83ba33e8a50771f995deecaf;
+        bloco = 128'h9eb32c63fdda5822a5735e9a603f2eec;
         rodada = 4'd5;
 
         #10
-        $display("%h", saida);
-        // if (saida == 128'h868c9847331d43f713766736d562e0f2)
-        //     $display("cifraBloco OK");
-        // else
-        //     $display("cifraBloco ERRO");
+        if (saida == 128'h2500121b32570a6caba3b8d8a9fd641f)
+            $display("cifraBloco OK");
+        else
+            $display("cifraBloco ERRO");
 
     end
 
