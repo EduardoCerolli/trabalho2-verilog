@@ -36,17 +36,6 @@ void adicionaChave (unsigned char bloco[16], int rodada) {
         bloco[(i * 4) + 3] = bloco[(i * 4) + 3] ^ chaveExpandida[(i * 40) + rodada + 3];
     }
 
-    if (rodada == 20) {
-        printf("\nchave\n");
-        for (int i = 0; i < 4; i++)
-        {
-            for (int j = 0; j < 4; j++)
-                printf("%02x ", chaveExpandida[(i * 40) + j + rodada]);        
-            printf("\n");
-        }
-        printf("\n");
-    }
-
     return;
 }
 
@@ -186,12 +175,12 @@ void expandeChave () {
 
 void cifraBloco (unsigned char bloco [16]) {
 
-    // for (int i = 0; i < 4; i++) {
-    //     bloco[(i * 4) + 0] = bloco[(i * 4) + 0] ^ chave[(i * 4) + 0];
-    //     bloco[(i * 4) + 1] = bloco[(i * 4) + 1] ^ chave[(i * 4) + 1];
-    //     bloco[(i * 4) + 2] = bloco[(i * 4) + 2] ^ chave[(i * 4) + 2];
-    //     bloco[(i * 4) + 3] = bloco[(i * 4) + 3] ^ chave[(i * 4) + 3];
-    // }
+    for (int i = 0; i < 4; i++) {
+        bloco[(i * 4) + 0] = bloco[(i * 4) + 0] ^ chave[(i * 4) + 0];
+        bloco[(i * 4) + 1] = bloco[(i * 4) + 1] ^ chave[(i * 4) + 1];
+        bloco[(i * 4) + 2] = bloco[(i * 4) + 2] ^ chave[(i * 4) + 2];
+        bloco[(i * 4) + 3] = bloco[(i * 4) + 3] ^ chave[(i * 4) + 3];
+    }
 
     for (int i = 0; i < 9; i++) {
         substituiBytes(bloco);
@@ -199,9 +188,10 @@ void cifraBloco (unsigned char bloco [16]) {
         multiplicaColunas(bloco);
         adicionaChave(bloco, i * 4);
     }
-    // substituiBytes(bloco);
-    // rotacionaLinhas(bloco);
-    // adicionaChave(bloco, 36);
+    
+    substituiBytes(bloco);
+    rotacionaLinhas(bloco);
+    adicionaChave(bloco, 36);
     
     return;
 }

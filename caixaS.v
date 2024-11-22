@@ -64,7 +64,8 @@ module caixaS ();
         caixaS[152] = 8'h46; caixaS[153] = 8'hee; caixaS[154] = 8'hb8; caixaS[155] = 8'h14;
         caixaS[156] = 8'hde; caixaS[157] = 8'h5e; caixaS[158] = 8'h0b; caixaS[159] = 8'hdb;
 
-            // Linha A
+        // Linha A
+        caixaS[160] = 8'he0; caixaS[161] = 8'h32; caixaS[162] = 8'h3a; caixaS[163] = 8'h0a;
         caixaS[164] = 8'h49; caixaS[165] = 8'h06; caixaS[166] = 8'h24; caixaS[167] = 8'h5c;
         caixaS[168] = 8'hc2; caixaS[169] = 8'hd3; caixaS[170] = 8'hac; caixaS[171] = 8'h62;
         caixaS[172] = 8'h91; caixaS[173] = 8'h95; caixaS[174] = 8'he4; caixaS[175] = 8'h79;
