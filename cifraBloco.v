@@ -13,6 +13,7 @@ module cifraBloco (
     assign blocoXOR[31:0] = bloco[31:0] ^ chave[31:0];
 
     expandeChave ec(.chave(chave), .chaveExpandida(chaveExpandida));
+    
     mioloCifraBloco cb0(.bloco(blocoXOR), .chaveExpandida(chaveExpandida), .rodada(4'd0), .saida(r0));
     mioloCifraBloco cb1(.bloco(r0), .chaveExpandida(chaveExpandida), .rodada(4'd1), .saida(r1));
     mioloCifraBloco cb2(.bloco(r1), .chaveExpandida(chaveExpandida), .rodada(4'd2), .saida(r2));

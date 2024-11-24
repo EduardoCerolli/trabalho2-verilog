@@ -289,7 +289,7 @@ int main (int argc, char *argv[]) {
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
-                    printf("%02x", bloco[(i * 4) + j]);        
+                    printf("%02x", bloco[(j * 4) + i]);        
             }
             printf("\n");
         }
