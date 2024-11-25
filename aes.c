@@ -279,19 +279,11 @@ int main (int argc, char *argv[]) {
         if (leBloco(bloco, arq)) {
             cifraBloco(bloco);
             
-            // for (int i = 0; i < 4; i++)
-            // {
-            //     for (int j = 0; j < 4; j++)
-            //         fprintf(arqSaida, "%c", bloco[(j * 4) + i]);        
-            // }
-
-
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
-                    printf("%02x", bloco[(j * 4) + i]);        
+                    fprintf(arqSaida, "%c", bloco[(j * 4) + i]);        
             }
-            printf("\n");
         }
     }
 
