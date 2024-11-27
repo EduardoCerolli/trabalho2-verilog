@@ -81,6 +81,10 @@ unsigned char gfMultiplica(unsigned char dado, unsigned char constante) {
     return produto;
 }
 
+unsigned char GF2 (unsigned char dado) {
+    return (dado << 1) ^ (dado >> 7 ) * 0x1B;
+}
+
 void multiplicaColunas(unsigned char bloco[4][4]) {
     unsigned char matriz_aux[4][4];
 
@@ -183,11 +187,11 @@ void decifraBloco (unsigned char bloco [4][4]) {
         // rotacionaLinhas(bloco);
         // substituiBytes(bloco);
         // adicionaChave(bloco, i * 4);
-        // multiplicaColunas(bloco);
+        multiplicaColunas(bloco);
     // }
     
     // rotacionaLinhas(bloco);
-    substituiBytes(bloco);
+    // substituiBytes(bloco);
     // for (int i = 0; i < 4; i++) {
     //     bloco[i][0] = bloco[i][0] ^ chave[i][0];
     //     bloco[i][1] = bloco[i][1] ^ chave[i][1];
@@ -282,6 +286,14 @@ int main (int argc, char *argv[]) {
     unsigned char bloco [4][4];
     while (!feof (arq)) {
         if (leBloco(bloco, arq)) {
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                    printf("%02x", bloco[i][j]);        
+            }
+            printf("\n");
+
+            printf("\n");
             decifraBloco(bloco);
             
             // for (int i = 0; i < 4; i++)
@@ -293,9 +305,29 @@ int main (int argc, char *argv[]) {
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
-                    printf("%02x", bloco[j][i]);        
+                    printf("%02x", bloco[i][j]);        
             }
             printf("\n");
+
+            //0x0E
+            unsigned char teste = GF2(GF2(GF2(0x47))) ^ GF2(GF2(0x47)) ^ GF2(0x47);
+            printf("%02x\n", teste);
+            printf("%02x\n", gfMultiplica(0x47, 0x0E));
+
+            //0x0B
+            teste = GF2(GF2(GF2(0x55))) ^ GF2(0x55) ^ 0x55;
+            printf("%02x\n", teste);
+            printf("%02x\n", gfMultiplica(0x55, 0x0B));
+            
+            //0x0D
+            teste = GF2(GF2(GF2(0x12))) ^ GF2(GF2(0x12)) ^ 0x12;
+            printf("%02x\n", teste);
+            printf("%02x\n", gfMultiplica(0x12, 0x0D));
+
+            //0x09
+            teste = GF2(GF2(GF2(0x07))) ^ 0x07;
+            printf("%02x\n", teste);
+            printf("%02x\n", gfMultiplica(0x07, 0x09));
         }
     }
 

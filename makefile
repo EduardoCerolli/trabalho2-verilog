@@ -7,9 +7,9 @@ CFLAGS = -Wall
 
 ICARUS = iverilog
 ARQS_V = cifra/substituiBytes.v cifra/rotacionaLinhas.v cifra/caixaS.v cifra/expandeChave.v cifra/multiplicaColunas.v cifra/mioloCifraBloco.v cifra/cifraBloco.v cifra/inverteBloco.v cifra/aes.v
-ARQS_DECIFRA_V = decripta/caixaSInv.v decripta/caixaS.v decripta/substituiBytes.v
+ARQS_DECIFRA_V = decripta/caixaSInv.v decripta/caixaS.v decripta/substituiBytes.v decripta/rotacionaLinhas.v decripta/expandeChave.v decripta/inverteBloco.v
 TBS = cifra/substituiBytes_TB.v cifra/rotacionaLinhas_TB.v cifra/expandeChave_TB.v cifra/multiplicaColunas_TB.v cifra/mioloCifraBloco_TB.v cifra/cifraBloco_TB.v cifra/inverteBloco_TB.v
-TBS_DECIFRA = decripta/substituiBytes_TB.v
+TBS_DECIFRA = decripta/substituiBytes_TB.v decripta/rotacionaLinhas_TB.v decripta/expandeChave_TB.v decripta/inverteBloco_TB.v
 
 all:
 	$(ICARUS) -o aes $(ARQS_V) -Paes.ARQ_DADOS='"$(ARQ_DADOS)"' -Paes.ARQ_SENHA='"$(ARQ_SENHA)"' -Paes.ARQ_SAIDA='"$(ARQ_SAIDA)"'
