@@ -91,7 +91,7 @@ void multiplicaColunas(unsigned char bloco[4][4]) {
     for (int i = 0; i < 4; i++) {
         matriz_aux[0][i] = gfMultiplica(bloco[0][i], 0x0E) ^ gfMultiplica(bloco[1][i], 0x0B) ^ 
                            gfMultiplica(bloco[2][i], 0x0D) ^ gfMultiplica(bloco[3][i], 0x09);
-                           
+
         matriz_aux[1][i] = gfMultiplica(bloco[0][i], 0x09) ^ gfMultiplica(bloco[1][i], 0x0E) ^ 
                            gfMultiplica(bloco[2][i], 0x0B) ^ gfMultiplica(bloco[3][i], 0x0D);
                            
@@ -308,26 +308,6 @@ int main (int argc, char *argv[]) {
                     printf("%02x", bloco[i][j]);        
             }
             printf("\n");
-
-            //0x0E
-            unsigned char teste = GF2(GF2(GF2(0x47))) ^ GF2(GF2(0x47)) ^ GF2(0x47);
-            printf("%02x\n", teste);
-            printf("%02x\n", gfMultiplica(0x47, 0x0E));
-
-            //0x0B
-            teste = GF2(GF2(GF2(0x55))) ^ GF2(0x55) ^ 0x55;
-            printf("%02x\n", teste);
-            printf("%02x\n", gfMultiplica(0x55, 0x0B));
-            
-            //0x0D
-            teste = GF2(GF2(GF2(0x12))) ^ GF2(GF2(0x12)) ^ 0x12;
-            printf("%02x\n", teste);
-            printf("%02x\n", gfMultiplica(0x12, 0x0D));
-
-            //0x09
-            teste = GF2(GF2(GF2(0x07))) ^ 0x07;
-            printf("%02x\n", teste);
-            printf("%02x\n", gfMultiplica(0x07, 0x09));
         }
     }
 
