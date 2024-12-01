@@ -181,23 +181,23 @@ void expandeChave () {
 }
 
 void decifraBloco (unsigned char bloco [4][4]) {
-    // adicionaChave(bloco, 36);
+    adicionaChave(bloco, 36);
 
-    // for (int i = 8; i >= 0; i--) {
-        // rotacionaLinhas(bloco);
-        // substituiBytes(bloco);
-        // adicionaChave(bloco, i * 4);
+    for (int i = 8; i >= 0; i--) {
+        rotacionaLinhas(bloco);
+        substituiBytes(bloco);
+        adicionaChave(bloco, i * 4);
         multiplicaColunas(bloco);
-    // }
+    }
     
-    // rotacionaLinhas(bloco);
-    // substituiBytes(bloco);
-    // for (int i = 0; i < 4; i++) {
-    //     bloco[i][0] = bloco[i][0] ^ chave[i][0];
-    //     bloco[i][1] = bloco[i][1] ^ chave[i][1];
-    //     bloco[i][2] = bloco[i][2] ^ chave[i][2];
-    //     bloco[i][3] = bloco[i][3] ^ chave[i][3];
-    // }
+    rotacionaLinhas(bloco);
+    substituiBytes(bloco);
+    for (int i = 0; i < 4; i++) {
+        bloco[i][0] = bloco[i][0] ^ chave[i][0];
+        bloco[i][1] = bloco[i][1] ^ chave[i][1];
+        bloco[i][2] = bloco[i][2] ^ chave[i][2];
+        bloco[i][3] = bloco[i][3] ^ chave[i][3];
+    }
     
     return;
 }
@@ -205,30 +205,21 @@ void decifraBloco (unsigned char bloco [4][4]) {
 void preencheChave(char *senha) {
     unsigned char aux[17];
 
-    if (senha == NULL) {
-        printf("Digite a senha.\n");
-        int res = scanf ("%16s", aux);
-        if (res == 0) {
-            perror ("Erro ao ler chave") ;
-            exit (1) ;
-        }
-    }
-    else {
-        FILE *arq;
-        arq = fopen(senha, "r");
-        if (!arq) {
-            perror ("Erro ao abrir arquivo") ;
-            exit (1) ;
-        }
-        int tam = fread(aux, 1, 16, arq);
-        if (tam != 16) {
-            perror ("Erro ao ler chave") ;
-            exit (1) ;
-        }
-
-        fclose (arq);
+    FILE *arq;
+    arq = fopen(senha, "r");
+    if (!arq) {
+        perror ("Erro ao abrir arquivo de senha") ;
+        exit (1) ;
     }
 
+    int tam = fread(aux, 1, 16, arq);
+    if (tam != 16) {
+        perror ("Chave invalida") ;
+        exit (1) ;
+    }
+
+    fclose (arq);
+    
     int k = 0;
     for (int i = 0; i < 4; i++) {
         chave[0][i] = aux[k++];
@@ -262,7 +253,7 @@ int leBloco (unsigned char bloco [4][4], FILE *arq) {
 }
 
 int main (int argc, char *argv[]) {
-    char *dados, *senha = NULL;
+    char *dados, *senha, *saida;
 
     if (argc < 2) {
         printf("Informe o arquivo de dados.\n");
@@ -273,41 +264,35 @@ int main (int argc, char *argv[]) {
     }
     
     dados = argv[1];
+    senha = argv[2];
+    saida = argv[3];
 
     preencheChave(senha);
 
     FILE *arq;
     arq = fopen(dados, "r");
     if (!arq) {
-        perror ("Erro ao abrir arquivo") ;
+        perror ("Erro ao abrir arquivo de dados") ;
+        exit (1) ;
+    }
+
+    FILE *arqSaida;
+    arqSaida = fopen(saida, "w");
+    if (!arqSaida) {
+        perror ("Erro ao abrir arquivo de saida") ;
         exit (1) ;
     }
 
     unsigned char bloco [4][4];
     while (!feof (arq)) {
         if (leBloco(bloco, arq)) {
-            for (int i = 0; i < 4; i++)
-            {
-                for (int j = 0; j < 4; j++)
-                    printf("%02x", bloco[i][j]);        
-            }
-            printf("\n");
-
-            printf("\n");
             decifraBloco(bloco);
             
-            // for (int i = 0; i < 4; i++)
-            // {
-            //     for (int j = 0; j < 4; j++)
-            //         printf("%c", bloco[j][i]);        
-            // }
-
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 4; j++)
-                    printf("%02x", bloco[i][j]);        
+                    fprintf(arqSaida, "%c", bloco[j][i]);        
             }
-            printf("\n");
         }
     }
 

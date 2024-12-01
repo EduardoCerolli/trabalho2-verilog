@@ -1,15 +1,15 @@
-module aes #(parameter ARQ_DADOS = "dados.txt", ARQ_SENHA = "senha.txt", ARQ_SAIDA = "teste.txt") ();
+module decifra #(parameter ARQ_DADOS = "teste.txt", ARQ_SENHA = "senha.txt", ARQ_SAIDA = "decifrado.txt") ();
     reg [127:0] bloco, chave;
     wire [127:0] blocoInv, chaveInv;
-    wire [127:0] cifrado, cifradoInv;
+    wire [127:0] decifrado, decifradoInv;
     reg [7:0] buffer;
 
     inverteBloco iv1(.bloco(bloco), .saida(blocoInv));
     inverteBloco iv2(.bloco(chave), .saida(chaveInv));
 
-    cifraBloco cb(.bloco(blocoInv), .chave(chaveInv), .saida(cifrado));
+    decifraBloco cb(.bloco(blocoInv), .chave(chaveInv), .saida(decifrado));
 
-    inverteBloco iv3(.bloco(cifrado), .saida(cifradoInv));
+    inverteBloco iv3(.bloco(decifrado), .saida(decifradoInv));
 
     integer dados, senha, saida, tam, index;
 
@@ -46,7 +46,7 @@ module aes #(parameter ARQ_DADOS = "dados.txt", ARQ_SENHA = "senha.txt", ARQ_SAI
                     bloco[i] = 1'b1;
 
                 #1
-                $fwrite(saida, "%s", cifradoInv);
+                $fwrite(saida, "%s", decifradoInv);
             end
         end
 
