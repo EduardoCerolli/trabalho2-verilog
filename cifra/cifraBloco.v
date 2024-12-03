@@ -1,4 +1,3 @@
-`timescale 1ns/1ps
 module cifraBloco (
     input wire [127:0] bloco, chave,
     output wire [127:0] saida
